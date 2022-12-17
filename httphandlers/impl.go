@@ -3,6 +3,8 @@ package httphandlers
 import (
 	"net/http"
 	"net/url"
+	"regexp"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-kratos/kratos/v2/encoding"
@@ -41,4 +43,18 @@ func BindReqVars(ctx *gin.Context, target interface{}) error {
 // BindQuery bind query parameters to target.
 func BindReqQuery(ctx *gin.Context, target interface{}) error {
 	return BindQuery(ctx.Request.URL.Query(), target)
+}
+
+// Convert path from /v1/xxx/{id} to /v1/xxx/:id
+func ConvertPath(path string) string {
+	cleanPath := ""
+	exp := regexp.MustCompile(`\{(\w+)\}`)
+	for _, p := range strings.Split(path, "/") {
+		if exp.MatchString(p) {
+			p = p[1 : len(p)-1]
+			p = ":" + p
+		}
+		cleanPath = cleanPath + "/" + p
+	}
+	return cleanPath
 }

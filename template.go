@@ -33,7 +33,11 @@ func Create{{.ServiceType}}(
 
 func (ctrl *{{.ServiceType}}Impl) SetupRoutes(version int,rg *gin.RouterGroup) {
 {{range .Methods}}
+	{{- if .HasVars}}
+	rg.GET(httphandlers.ConvertPath("{{.Path}}"), ctrl.{{.Name}}Handler)
+	{{- else}}
 	rg.{{.Method}}("{{.Path}}", ctrl.{{.Name}}Handler)
+	{{- end}}
 {{- end}}
 }
 
