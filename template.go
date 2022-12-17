@@ -23,8 +23,12 @@ type {{.ServiceType}}Impl struct {
 	svc {{.ServiceType}}UseCases
 }
 
-func Create{{.ServiceType}}() rest.Controller {
-	return &{{.ServiceType}}Impl{}
+func Create{{.ServiceType}}(
+	svc {{.ServiceType}}UseCases,
+) httphandlers.Controller {
+	return &{{.ServiceType}}Impl{
+		svc: svc,
+	}
 }
 
 func (ctrl *{{.ServiceType}}Impl) SetupRoutes(version int,rg *gin.RouterGroup) {
@@ -45,18 +49,18 @@ func (ctrl *{{$svrType}}Impl) {{.Name}}Handler(ctx *gin.Context){
 	}
 	{{- end}}
 	{{- if not (eq .Body "")}}
-	if err := rest.BindReqQuery(ctx, &req); err != nil {
+	if err := httphandlers.BindReqQuery(ctx, &req); err != nil {
 		ctx.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
 	{{- else}}
-		if err := rest.BindReqQuery(ctx,&req{{.Body}}); err != nil {
+		if err := httphandlers.BindReqQuery(ctx,&req{{.Body}}); err != nil {
     	ctx.JSON(400, gin.H{"error": err.Error()})
 			return
 		}
   {{- end}}
   {{- if .HasVars}}
-	if err := rest.BindReqVars(ctx,&req); err != nil {
+	if err := httphandlers.BindReqVars(ctx,&req); err != nil {
     	ctx.JSON(400, gin.H{"error": err.Error()})
 			return
 	}

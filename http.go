@@ -19,7 +19,7 @@ const (
 	contextPackage       = protogen.GoImportPath("context")
 	transportHTTPPackage = protogen.GoImportPath("github.com/go-kratos/kratos/v2/transport/http")
 	bindingPackage       = protogen.GoImportPath("github.com/go-kratos/kratos/v2/transport/http/binding")
-	restPackage          = protogen.GoImportPath("github.com/karim-w/protoc-gen-go-rest/rest")
+	restPackage          = protogen.GoImportPath("github.com/karim-w/protoc-gen-go-rest/httphandlers")
 	stdLibPackage        = protogen.GoImportPath("github.com/karim-w/stdlib")
 	ginPackage           = protogen.GoImportPath("github.com/gin-gonic/gin")
 )

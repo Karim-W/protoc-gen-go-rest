@@ -16,29 +16,8 @@
 
 .vscode/launch.json
 cleanup.sh
-third_party/README.md
-third_party/errors/errors.proto
-third_party/google/api/annotations.proto
-third_party/google/api/client.proto
-third_party/google/api/field_behavior.proto
-third_party/google/api/http.proto
-third_party/google/api/httpbody.proto
-third_party/google/protobuf/any.proto
-third_party/google/protobuf/api.proto
-third_party/google/protobuf/descriptor.proto
-third_party/google/protobuf/duration.proto
-third_party/google/protobuf/empty.proto
-third_party/google/protobuf/field_mask.proto
-third_party/google/protobuf/source_context.proto
-third_party/google/protobuf/struct.proto
-third_party/google/protobuf/timestamp.proto
-third_party/google/protobuf/type.proto
-third_party/google/protobuf/wrappers.proto
-third_party/google/protobuf/compiler/plugin.proto
-third_party/openapi/v3/annotations.proto
-third_party/openapi/v3/openapi.proto
-third_party/validate/README.md
-third_party/validate/validate.proto
+third_party/*
 launch.json
 Tasklist.md
 
+p/*
